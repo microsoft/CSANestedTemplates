@@ -1,0 +1,26 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "serverName": {
+            "type": "string"
+        },
+        "subnetID": {
+            "type": "string"
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Sql/servers/virtualNetworkRules",
+            "apiVersion": "2015-05-01-preview",
+            "name": "[concat(parameters('serverName'),'/AKS')]",
+            "dependsOn": [],
+            "properties": {
+                "virtualNetworkSubnetId": "[parameters('subnetID')]",
+                "ignoreMissingVnetServiceEndpoint": true
+            }
+        }
+    ]
+}
+
+

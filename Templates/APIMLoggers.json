@@ -1,0 +1,42 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "apimName": {
+            "type": "string"
+        },
+        "resourceId": {
+            "type": "String"
+        },
+        "loggerName": {
+            "type": "string"
+        },
+        "loggerType": {
+            "type": "int"
+        },
+        "appInsightsId": {
+            "type": "string"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "name": "[concat(parameters('apimName'), '/', parameters('loggerName'))]",
+            "type": "Microsoft.ApiManagement/service/loggers",
+            "apiVersion": "2019-01-01",
+            "properties": {
+                "loggerType": "[parameters('loggerType')]",
+                "credentials": {
+                    "instrumentationKey": "[reference(parameters('appInsightsId'), '2015-05-01').InstrumentationKey]"
+                },
+                "resourceId": "[parameters('resourceId')]"
+            }
+        }
+    ],
+    "outputs": {
+        "APIMIP": {
+            "type": "array",
+            "value": "[reference(resourceId('Microsoft.ApiManagement/service',parameters('apimname'))).privateIPAddresses]"
+        }
+    }
+}

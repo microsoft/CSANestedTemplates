@@ -1,0 +1,46 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "roleName": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "Actions": {
+            "type": "array"
+        },
+        "Scope": {
+            "type": "array"
+        }
+    },
+    "variables": {
+        "rbacGuid": "[guid(deployment().name)]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Authorization/roleDefinitions",
+            "apiVersion": "2017-05-01",
+            "name": "[variables('rbacGuid')]",
+            "properties": {
+                "roleName": "[parameters('roleName')]",
+                "IsCustom": true,
+                "Description": "[parameters('description')]",
+                "permissions": [
+                    {
+                        "Actions": "[parameters('Actions')]",
+                        "NotActions": []
+                    }
+                ],
+                "AssignableScopes": "[parameters('Scope')]"
+            }
+        }
+    ],
+    "outputs": {
+        "roleDefinitionName": {
+            "type": "string",
+            "value": "[variables('rbacGuid')]"
+        }
+    }
+}

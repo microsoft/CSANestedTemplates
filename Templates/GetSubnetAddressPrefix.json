@@ -1,0 +1,21 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vnetName": {
+            "type": "String"
+        },
+        "subnetName": {
+            "type": "string"
+        }
+    },
+    "variables": {},
+    "resources": [
+    ],
+    "outputs": {
+        "addressPrefix": {
+            "value": "[reference(concat(resourceGroup().id, '/providers/Microsoft.Network/virtualNetworks/', parameters('vnetName'), '/subnets/', parameters('subnetName')), '2018-03-01').addressPrefix]",
+            "type": "string"
+        }
+    }
+}

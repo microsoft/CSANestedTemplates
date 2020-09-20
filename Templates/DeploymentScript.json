@@ -1,0 +1,48 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "scriptUri": {
+            "type": "string"
+        },
+        "kind": {
+            "type": "string"
+        },
+        "identityID": {
+            "type": "String",
+            "metadata": {
+                "description": "ResourceId of the User Assigned Identity"
+            }
+        },
+        "arguments": {
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Resources/deploymentScripts",
+            "apiVersion": "2019-10-01-preview",
+            "name": "DeploymentScript",
+            "location": "[resourceGroup().location]",
+            "kind": "[parameters('kind')]", // or "AzureCLI"
+            "identity": {
+                "type": "userAssigned",
+                "userAssignedIdentities": {
+                    "[parameters('identityID')]": {}
+                }
+            },
+            "properties": {
+                "forceUpdateTag": 1,
+                "azCliVersion": "2.0.80",  // or "azCliVersion": "2.0.80"
+                "arguments": "[parameters('arguments')]",
+                "primaryScriptUri": "[parameters('scriptUri')]",
+                "timeout": "PT60M",
+                "cleanupPreference": "OnSuccess",
+                "retentionInterval": "P1D"
+            }   
+        }
+        
+    ],
+    "outputs": {}
+}
