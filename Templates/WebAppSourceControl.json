@@ -30,7 +30,6 @@
             "dbType": "None",
             "connectionString": "",
             "setParameters": {
-              "IIS Web Application Name": "[parameters('appName')]"
             }
           }
         }
