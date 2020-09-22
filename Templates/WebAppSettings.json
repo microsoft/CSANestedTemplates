@@ -1,0 +1,35 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "appName": {
+        "type": "string"
+      },
+      "appSettings": {
+        "type": "string"
+      }
+    },
+    "variables": {
+        "copy": [
+            {
+                "name": "appSettings",
+                "count": "[length(parameters('appSettings'))]",
+                "input": {
+                    "name": "[split(parameters('appSettings')[copyIndex('appSettings')],'|')[0]]",
+                    "value": "[split(parameters('appSettings')[copyIndex('appSettings')],'|')[0]]"
+                }
+            }
+        ]
+    },
+    "resources": [
+        {
+            "name": "[concat(parameters('appName'), '/web')]",
+            "type": "Microsoft.Web/sites/config",
+            "apiVersion": "2018-11-01",
+            "kind": "string",
+            "properties": {
+            "appSettings": "[variables('appSettings')]"
+            }
+        }
+    ]
+}
