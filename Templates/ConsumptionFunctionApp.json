@@ -18,7 +18,7 @@
                 "count": "[length(parameters('appSettings'))]",
                 "input": {
                     "name": "[split(parameters('appSettings')[copyIndex('appSettings')],'|')[0]]",
-                    "value": "[split(parameters('appSettings')[copyIndex('appSettings')],'|')[0]]"
+                    "value": "[split(parameters('appSettings')[copyIndex('appSettings')],'|')[1]]"
                 }
             }
         ]
