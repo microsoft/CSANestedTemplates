@@ -6,7 +6,7 @@
         "type": "string"
       },
       "appSettings": {
-        "type": "string"
+        "type": "array"
       }
     },
     "variables": {
