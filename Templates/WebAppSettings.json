@@ -28,7 +28,7 @@
             "apiVersion": "2018-11-01",
             "kind": "string",
             "properties": {
-            "appSettings": "[variables('appSettings')]"
+                "appSettings": "[variables('appSettings')]"
             }
         }
     ]
