@@ -57,5 +57,11 @@
             "type": "SystemAssigned"
         }
       }
-    ]
+    ],
+    "outputs": {
+      "principalID": {
+        "type": "string",
+        "value": "[reference(resourceId('Microsoft.Web/sites', parameters('appName')), '2020-06-01', 'full').identity.principalId]"
+      }
+    }
   }
