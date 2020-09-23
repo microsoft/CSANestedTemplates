@@ -26,11 +26,7 @@
             "displayName": "SampleFunctionAppPackage"
           },
           "properties": {
-            "packageUri": "[parameters('packageUri')]",
-            "dbType": "None",
-            "connectionString": "",
-            "setParameters": {
-            }
+            "packageUri": "[parameters('packageUri')]"
           }
         }
     ]

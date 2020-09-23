@@ -52,6 +52,9 @@
           "siteConfig": {
             "appSettings": "[variables('appSettings')]"
           }
+        },
+        "identity": {
+            "type": "SystemAssigned"
         }
       }
     ]
