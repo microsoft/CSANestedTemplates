@@ -30,8 +30,8 @@
         "name": "[variables('hostingPlanName')]",
         "location": "[resourceGroup().location]",
         "sku": {
-          "name": "Y1",
-          "tier": "Dynamic"
+          "name": "EP1",
+          "tier": "ElasticPremium"
         },
         "properties": {
           "name": "[variables('hostingPlanName')]",
